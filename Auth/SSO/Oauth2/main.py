@@ -4,6 +4,8 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
+from db.schemas import User, UserInDB
+
 fake_users_db = {
     "parsa": {
         "username": "parsa",
@@ -29,17 +31,6 @@ def fake_hash_password(password: str):
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-
-class User(BaseModel):
-    username: str
-    email: str | None = None
-    full_name: str | None = None
-    disabled: bool | None = None
-
-
-class UserInDB(User):
-    hashed_password: str
 
 
 def get_user(db, username: str):
