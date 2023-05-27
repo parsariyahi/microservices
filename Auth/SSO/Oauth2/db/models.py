@@ -14,7 +14,7 @@ class User(Base):
     active: Mapped[bool] = mapped_column(Boolean())
     password: Mapped[str] = mapped_column(String(30))
 
-engine = create_engine("sqlite:///./some.db", echo=True)
+engine = create_engine("sqlite:///Auth/SSO/Oauth2/db/database.db", echo=True)
 
 
 Base.metadata.create_all(engine)
